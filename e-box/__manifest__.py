@@ -19,10 +19,15 @@
     'version': '16.0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': [
+        'base',
+        'hr_contract',
+    ],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'views/hr_contract.xml',
+        'views/hr_contract_history.xml',
+        'views/hr_employee.xml'
     ],
 }
