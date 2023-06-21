@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_contract_history_view_form_ebox" model="ir.ui.view">
+        <field name="name">hr.contract.history.form.ebox</field>
+        <field name="model">hr.contract.history</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_history_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='job_id']" position="after">
+                <field name="contratante_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
