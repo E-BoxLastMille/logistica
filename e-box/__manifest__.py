@@ -21,13 +21,16 @@
     # any module necessary for this one to work correctly
     'depends': [
         'base',
+        'hr',
         'hr_contract',
+        'fleet',
     ],
 
     # always loaded
     'data': [
         'views/hr_contract.xml',
         'views/hr_contract_history.xml',
-        'views/hr_employee.xml'
+        'views/hr_employee.xml',
+        'views/fleet_vehicle.xml',
     ],
 }

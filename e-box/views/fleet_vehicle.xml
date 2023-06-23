@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="fleet_vehicle_view_form_ebox" model="ir.ui.view">
+        <field name="name">fleet.vehicle.form.ebox</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='oe_title']" position="after">
+                <label for="department_id"/>
+                <field name="department_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
