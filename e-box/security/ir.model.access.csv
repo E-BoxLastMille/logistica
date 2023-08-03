@@ -1,1 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_e_box_amazon_reason_codes,access_e_box_amazon_reason_codes,model_e_box_amazon_reason_codes,base.group_user,1,1,1,1
+access_e_box_amazon_duracion_planificada,access_e_box_amazon_duracion_planificada,model_e_box_amazon_duracion_planificada,base.group_user,1,1,1,1
