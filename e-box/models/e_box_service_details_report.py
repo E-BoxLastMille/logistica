@@ -7,11 +7,17 @@ class ServiceDetailsReport(models.Model):
 
     fecha = fields.Date(string='Fecha')
     empleado_id = fields.Many2one('hr.employee', string='Empleado')
-    departamento_id = fields.Many2one('hr.department', string = 'Departamento', related='empleado_id.department_id', store=True)
+    departamento_id = fields.Many2one('hr.department', string = 'Departamento (Estación)', related='empleado_id.department_id', store=True)
     amazon_duracion_planificada_id = fields.Many2one('e_box.amazon_duracion_planificada', string='Duración planificada')
     inicio_sesion = fields.Datetime(string='Inicio de sesión')
     cierre_sesion = fields.Datetime(string='Fin de sesión')
     amazon_identificacion = fields.Char(string = "Amazon Identificación", related='empleado_id.amazon_identificacion', store=True)
+    contratante_id = fields.Many2one('hr.employee', string = 'Contratante', related='empleado_id.contratante_id', store=True)
+    amazon_ruta_id = fields.Many2one('hr.amazon_rutas', string='Ruta')
+    amazon_tipo_servicio_id = fields.Many2one('hr.amazon_tipo_servicio', string='Tipo servicio')
+    puesto_id = fields.Many2one('hr.job', string = 'Puesto', related='empleado_id.job_id', store=True)
+    amazon_delivery_id = fields.Many2one('hr.amazon_delivery', string='Delivery')
+    asalariado_de_id = fields.Many2one('hr.employee', string = 'Asalariado de', related='empleado_id.asalariado_de_id', store=True)
     distancia_total_permitida = fields.Integer(string='Distancia total permitida')
 
 
@@ -25,12 +31,28 @@ class AmazonReasonCodes(models.Model):
     _name = 'e_box.amazon_reason_codes'
 
     name = fields.Char(string='Reason code')
-    estado_amazon = fields.Selection([
+    amazon_estado = fields.Selection([
         ('not_attrited', 'Not attrited'),
         ('non_regretted', 'Non regretted'),
         ('regretted', 'Regretted')
     ], required=True, default='not_attrited')
     nota = fields.Text(string='Nota')
+
+class AmazonRutas(models.Model):
+    _name = 'e_box.amazon_rutas'
+
+    name = fields.Char(string='Ruta')
+    departamento_id = fields.Many2one('hr.department', string = 'Departamento (Estación)')
+
+class AmazonTipoServicio(models.Model):
+    _name = 'e_box.amazon_tipo_servicio'
+
+    name = fields.Char(string='Tipo servicio')
+
+class AmazonDelivery(models.Model):
+    _name = 'e_box.amazon_delivery'
+
+    name = fields.Char(string='Delivery')
 
 class HrEmployee(models.Model):
     _inherit = 'hr.employee'
@@ -43,3 +65,4 @@ class HrEmployee(models.Model):
         ('offboarded', 'OFFBOARDED')
     ], default='activo')
     amazon_reason_codes_id = fields.Many2one('e_box.amazon_reason_codes', string='Reason code')
+    
