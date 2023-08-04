@@ -18,8 +18,13 @@ class ServiceDetailsReport(models.Model):
     puesto_id = fields.Many2one('hr.job', string = 'Puesto', related='empleado_id.job_id', store=True)
     amazon_delivery_id = fields.Many2one('hr.amazon_delivery', string='Delivery')
     asalariado_de_id = fields.Many2one('hr.employee', string = 'Asalariado de', related='empleado_id.asalariado_de_id', store=True)
+    distancia_total_planificada = fields.Integer(string='Distancia total planificada')
     distancia_total_permitida = fields.Integer(string='Distancia total permitida')
-
+    amazon_unidad_distancia_id = fields.Many2one('hr.amazon_unidad_distancia', string='Unidad distancia')
+    paquetes_total = fields.Integer(string='Paq. Total')
+    paquetes_entregado = fields.Integer(string='Paq. Entregados')
+    paquetes_devuelto = fields.Integer(string='Paq. Devueltos')
+    amazon_nombre_mensajero = fields.Char(string = "Nombre mensajero", related='empleado_id.amazon_nombre_mensajero', store=True)
 
 class AmazonDuracionPlanificada(models.Model):
     _name = 'e_box.amazon_duracion_planificada'
@@ -53,6 +58,11 @@ class AmazonDelivery(models.Model):
     _name = 'e_box.amazon_delivery'
 
     name = fields.Char(string='Delivery')
+
+class AmazonUnidadDistancia(models.Model):
+    _name = 'e_box.amazon_unidad_distancia'
+
+    name = fields.Char(string='Unidad distancia')
 
 class HrEmployee(models.Model):
     _inherit = 'hr.employee'

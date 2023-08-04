@@ -33,5 +33,7 @@
         'views/hr_contract_history.xml',
         'views/hr_employee.xml',
         'views/fleet_vehicle.xml',
+        'views/e_box_service_details_report.xml',
+        'views/menu.xml',
     ],
 }

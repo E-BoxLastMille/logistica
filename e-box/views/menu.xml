@@ -1,0 +1,53 @@
+<odoo>
+    <menuitem id="menu_amazon" web_icon="Amazon,static/description/amazon.png" name="Amazon (voodoo)" />
+
+    <menuitem id="menu_amazon_eblm_service_details_report"
+          name = "EBLM Service Details Report" 
+          parent="menu_amazon"
+          action="act_window_service_details_report"
+          sequence="10"
+    />
+
+    <menuitem id="menu_amazon_configuracion" 
+              name="Configuración"
+              parent="menu_amazon"
+              sequence="1000"
+    />
+    
+    <menuitem id="menu_amazon_duracion_planificada"
+              name = "Duración planificada"  
+              parent="menu_amazon_configuracion"
+              sequence="10"
+    />
+
+    <menuitem id="menu_amazon_reason_codes"
+              name = "Reason codes"  
+              parent="menu_amazon_configuracion"
+              sequence="20"
+    />
+
+    <menuitem id="menu_amazon_rutas"
+              name = "Rutas"  
+              parent="menu_amazon_configuracion"
+              sequence="30"
+    />
+
+    <menuitem id="menu_amazon_tipo_servicio"
+              name = "Tipo servicio"  
+              parent="menu_amazon_configuracion"
+              sequence="40"
+    />
+
+    <menuitem id="menu_amazon_delivery"
+              name = "Delivery"  
+              parent="menu_amazon_configuracion"
+              sequence="50"
+    />
+
+    <menuitem id="menu_amazon_unidad_distancia"
+              name = "Unidad distancia"  
+              parent="menu_amazon_configuracion"
+              sequence="60"
+    />
+
+</odoo>
