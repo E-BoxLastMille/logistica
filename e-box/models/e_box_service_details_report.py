@@ -40,7 +40,7 @@ class AmazonReasonCodes(models.Model):
         ('not_attrited', 'Not attrited'),
         ('non_regretted', 'Non regretted'),
         ('regretted', 'Regretted')
-    ], required=True, default='not_attrited')
+    ], string = "Amazon estado", required=True, default='not_attrited')
     nota = fields.Text(string='Nota')
 
 class AmazonRutas(models.Model):
