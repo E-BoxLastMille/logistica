@@ -24,7 +24,7 @@
         <field name="name">e_box.service_details_report.tree</field>
         <field name="model">e_box.service_details_report</field>
         <field type="xml" name="arch">
-            <tree>
+            <tree create="false" delete="false" edit="false">
                 <field name="fecha"/>
                 <field name="empleado_id"/>
                 <field name="departamento_id"/>
@@ -53,7 +53,7 @@
         <field name="name">e_box.service_details_report.form</field>
         <field name="model">e_box.service_details_report</field>
         <field type="xml" name="arch">
-            <form>
+            <form create="false" delete="false" edit="false">
                 <sheet>
                     <group>
                         <field name="fecha"/>
