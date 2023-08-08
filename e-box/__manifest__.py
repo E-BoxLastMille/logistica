@@ -35,5 +35,6 @@
         'views/fleet_vehicle.xml',
         'views/e_box_service_details_report.xml',
         'views/menu.xml',
+        'wizard/amazon_import_eblm.xml',
     ],
 }

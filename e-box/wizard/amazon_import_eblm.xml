@@ -1,0 +1,31 @@
+<odoo>
+    <record id="view_import_eblm_form" model="ir.ui.view">
+        <field name="name">e_box.amazon_import_eblm.form</field>
+        <field name="model">e_box.amazon_import_eblm</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="csv_file" widget='binary' filename="filename"/>
+                </group>
+                <footer>
+                    <button string="Import" type="object" class="btn-primary" name="button_import"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_import_eblm" model="ir.actions.act_window">
+        <field name="name">Importar EBLM</field>
+        <field name="res_model">e_box.amazon_import_eblm</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_import_eblm_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_import_eblm" 
+              name="Importar EBLM" 
+              parent="menu_amazon"
+              action="action_import_eblm" 
+              sequence="20"/>
+</odoo>

@@ -29,7 +29,7 @@ class ServiceDetailsReport(models.Model):
 class AmazonDuracionPlanificada(models.Model):
     _name = 'e_box.amazon_duracion_planificada'
 
-    name = fields.Date(string='Nombre')
+    name = fields.Char(string='Nombre')
     precio = fields.Float(string='Precio')
 
 class AmazonReasonCodes(models.Model):
