@@ -12,7 +12,7 @@ _logger = logging.getLogger(__name__)
 class AmazonImportEBLM(models.Model):
     _name = 'e_box.amazon_import_eblm'
 
-    csv_file = fields.Binary(string='EBLM Service Details (csv)', required=True)
+    csv_file = fields.Binary(string='File (csv)', required=True)
     filename = fields.Char(string='Filename')
 
     def button_import(self):
@@ -45,4 +45,4 @@ class AmazonImportEBLM(models.Model):
                 'paquetes_entregado': row['Envíos entregados'],
                 'paquetes_devuelto': row['Envíos devueltos'],    
             })
-        return {'type': 'ir.actions.act_window_close'}
+        return {'type': 'ir.actions.client', 'tag': 'reload'}
