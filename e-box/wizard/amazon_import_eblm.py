@@ -22,13 +22,33 @@ class AmazonImportEBLM(models.Model):
         file_input.seek(0)
         reader = csv.DictReader(file_input, delimiter=',')
         for row in reader:
-            empleado_id = self.env['hr.employee'].search([('amazon_nombre_mensajero','=', row['Mensajero'])])
+            empleado_id = self.env['hr.employee'].search([
+                '|',
+                ('name','ilike', row['Mensajero']),
+                ('amazon_nombre_mensajero','ilike', row['Mensajero'])
+            ], limit = 1, order='id desc')
             if not empleado_id:
                 continue
             amazon_duracion_planificada_id = self.env['e_box.amazon_duracion_planificada'].search([('name','=', row['Duración planificada'])])
+            if not amazon_duracion_planificada_id:
+                amazon_duracion_planificada_id = self.env['e_box.amazon_duracion_planificada'].create({
+                    'name' : row['Duración planificada']
+                })
             amazon_ruta_id = self.env['e_box.amazon_rutas'].search([('name','=', row['Ruta'])])
+            if not amazon_ruta_id:
+                amazon_ruta_id = self.env['e_box.amazon_rutas'].create({
+                    'name' : row['Ruta']
+                })
             amazon_tipo_servicio_id = self.env['e_box.amazon_tipo_servicio'].search([('name','=', row['Tipo de servicio'])])
+            if not amazon_tipo_servicio_id:
+                amazon_tipo_servicio_id = self.env['e_box.amazon_tipo_servicio'].create({
+                    'name' : row['Tipo de servicio']
+                })
             amazon_unidad_distancia_id = self.env['e_box.amazon_unidad_distancia'].search([('name','=', row['Unidad de distancia'])])
+            if not amazon_unidad_distancia_id:
+                amazon_unidad_distancia_id = self.env['e_box.amazon_unidad_distancia'].create({
+                    'name' : row['Unidad de distancia']
+                })
             self.env['e_box.service_details_report'].create({
                 'fecha': row['Fecha'],
                 'empleado_id': empleado_id.id,

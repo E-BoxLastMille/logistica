@@ -10,7 +10,7 @@
                 <filter name="group_by_fecha" string="Fecha" context="{'group_by' : 'fecha'}"/>
                 <filter name="group_by_empleado_id" string="Empleado" context="{'group_by' : 'empleado_id'}"/>
                 <filter name="group_by_amazon_identificacion" string="Amazon identificación" context="{'group_by' : 'amazon_identificacion'}"/>
-                <filter name="group_by_contratante_id" string="Contratante" context="{'group_by' : 'contratante_id'}"/>
+                <filter name="group_by_contratante_empleado_id" string="Contratante" context="{'group_by' : 'contratante_empleado_id'}"/>
                 <filter name="group_by_create_amazon_ruta_id" string="Ruta" context="{'group_by' : 'amazon_ruta_id'}"/>
                 <filter name="group_by_create_amazon_tipo_servicio_id" string="Tipo servicio" context="{'group_by' : 'amazon_tipo_servicio_id'}"/>
                 <filter name="group_by_create_puesto_id" string="Puesto" context="{'group_by' : 'puesto_id'}"/>
@@ -32,7 +32,7 @@
                 <field name="inicio_sesion"/>
                 <field name="cierre_sesion"/>
                 <field name="amazon_identificacion"/>
-                <field name="contratante_id"/>
+                <field name="contratante_empleado_id"/>
                 <field name="amazon_ruta_id"/>
                 <field name="amazon_tipo_servicio_id"/>
                 <field name="puesto_id"/>
@@ -63,7 +63,7 @@
                         <field name="inicio_sesion"/>
                         <field name="cierre_sesion"/>
                         <field name="amazon_identificacion"/>
-                        <field name="contratante_id"/>
+                        <field name="contratante_empleado_id"/>
                         <field name="amazon_ruta_id"/>
                         <field name="amazon_tipo_servicio_id"/>
                         <field name="puesto_id"/>

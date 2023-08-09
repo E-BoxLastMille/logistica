@@ -12,7 +12,7 @@ class ServiceDetailsReport(models.Model):
     inicio_sesion = fields.Datetime(string='Inicio de sesión')
     cierre_sesion = fields.Datetime(string='Fin de sesión')
     amazon_identificacion = fields.Char(string = "Amazon Identificación", related='empleado_id.amazon_identificacion', store=True)
-    contratante_id = fields.Many2one('res.partner', string = 'Contratante', related='empleado_id.contratante_id', store=True)
+    contratante_empleado_id = fields.Many2one('res.partner', string = "Contratante", related="empleado_id.contratante_id", store=True)
     amazon_ruta_id = fields.Many2one('e_box.amazon_rutas', string='Ruta')
     amazon_tipo_servicio_id = fields.Many2one('e_box.amazon_tipo_servicio', string='Tipo servicio')
     puesto_id = fields.Many2one('hr.job', string = 'Puesto', related='empleado_id.job_id', store=True)
