@@ -1,5 +1,5 @@
 <odoo>
-    <menuitem id="menu_amazon" web_icon="Amazon,static/description/amazon.png" name="Amazon (voodoo)" />
+    <menuitem id="menu_amazon" web_icon="e-box,static/description/amazon.png" name="Amazon EBLM" />
 
     <menuitem id="menu_amazon_eblm_service_details_report"
           name = "EBLM Service Details Report" 
@@ -13,39 +13,39 @@
               parent="menu_amazon"
               sequence="1000"
     />
-    
-    <menuitem id="menu_amazon_duracion_planificada"
-              name = "Duración planificada"  
-              parent="menu_amazon_configuracion"
-              action="act_window_amazon_duracion_planificada"
-              sequence="10"
-    />
 
-    <menuitem id="menu_amazon_reason_codes"
-              name = "Reason codes"  
+    <menuitem id="menu_amazon_delivery"
+              name = "Delivery"  
               parent="menu_amazon_configuracion"
-              action="act_window_amazon_reason_codes"
-              sequence="20"
+              action="act_window_amazon_delivery"
+              sequence="10"
     />
 
     <menuitem id="menu_amazon_rutas"
               name = "Rutas"  
               parent="menu_amazon_configuracion"
               action="act_window_amazon_rutas"
-              sequence="30"
+              sequence="20"
     />
 
     <menuitem id="menu_amazon_tipo_servicio"
               name = "Tipo servicio"  
               parent="menu_amazon_configuracion"
               action="act_window_amazon_tipo_servicio"
+              sequence="30"
+    />
+
+    <menuitem id="menu_amazon_duracion_planificada"
+              name = "Duración planificada"  
+              parent="menu_amazon_configuracion"
+              action="act_window_amazon_duracion_planificada"
               sequence="40"
     />
 
-    <menuitem id="menu_amazon_delivery"
-              name = "Delivery"  
+    <menuitem id="menu_amazon_reason_codes"
+              name = "Reason codes"  
               parent="menu_amazon_configuracion"
-              action="act_window_amazon_delivery"
+              action="act_window_amazon_reason_codes"
               sequence="50"
     />
 
