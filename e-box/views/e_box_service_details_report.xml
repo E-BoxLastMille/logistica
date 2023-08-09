@@ -14,7 +14,6 @@
                 <filter name="group_by_create_amazon_ruta_id" string="Ruta" context="{'group_by' : 'amazon_ruta_id'}"/>
                 <filter name="group_by_create_amazon_tipo_servicio_id" string="Tipo servicio" context="{'group_by' : 'amazon_tipo_servicio_id'}"/>
                 <filter name="group_by_create_puesto_id" string="Puesto" context="{'group_by' : 'puesto_id'}"/>
-                <filter name="group_by_create_amazon_delivery_id" string="Delivery" context="{'group_by' : 'amazon_delivery_id'}"/>
                 <filter name="group_by_create_asalariado_de_id" string="Asalariado" context="{'group_by' : 'asalariado_de_id'}"/>
             </search>
         </field>
@@ -36,7 +35,6 @@
                 <field name="amazon_ruta_id"/>
                 <field name="amazon_tipo_servicio_id"/>
                 <field name="puesto_id"/>
-                <field name="amazon_delivery_id"/>
                 <field name="asalariado_de_id"/>
                 <field name="distancia_total_planificada"/>
                 <field name="distancia_total_permitida"/>
@@ -67,7 +65,6 @@
                         <field name="amazon_ruta_id"/>
                         <field name="amazon_tipo_servicio_id"/>
                         <field name="puesto_id"/>
-                        <field name="amazon_delivery_id"/>
                         <field name="asalariado_de_id"/>
                         <field name="distancia_total_planificada"/>
                         <field name="distancia_total_permitida"/>
@@ -254,46 +251,6 @@
     <record id="act_window_amazon_tipo_servicio" model="ir.actions.act_window" >
         <field name="name">Amazon tipo servicio</field>
         <field name="res_model">e_box.amazon_tipo_servicio</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-
-    <record id="amazon_delivery_search" model="ir.ui.view">
-        <field name="name">e_box.amazon_delivery.search</field>
-        <field name="model">e_box.amazon_delivery</field>
-        <field type="xml" name="arch">
-            <search>
-                <field name="name"/>
-            </search>
-        </field>
-    </record>
-
-    <record id="amazon_delivery_tree" model="ir.ui.view">
-        <field name="name">e_box.amazon_delivery.tree</field>
-        <field name="model">e_box.amazon_delivery</field>
-        <field type="xml" name="arch">
-            <tree>
-                <field name="name"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="amazon_delivery_form" model="ir.ui.view" >
-        <field name="name">e_box.amazon_delivery.form</field>
-        <field name="model">e_box.amazon_delivery</field>
-        <field type="xml" name="arch">
-            <form>
-                <sheet>
-                    <group>
-                        <field name="name"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <record id="act_window_amazon_delivery" model="ir.actions.act_window" >
-        <field name="name">Amazon delivery</field>
-        <field name="res_model">e_box.amazon_delivery</field>
         <field name="view_mode">tree,form</field>
     </record>
 
