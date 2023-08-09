@@ -58,6 +58,7 @@ class AmazonImportEBLM(models.Model):
             cierre_sesion = datetime.strptime(row['Cierre de sesión'], '%Y-%m-%dT%H:%M:%S.%fZ')
             #Evitamos duplicados
             service_details_report_id = self.env['e_box.service_details_report'].search([
+                ('fecha', '=', row['Fecha']),
                 ('empleado_id', '=', empleado_id.id),
                 ('amazon_delivery_id', '=', amazon_delivery_id.id),
                 ('amazon_duracion_planificada_id', '=', amazon_duracion_planificada_id.id),
