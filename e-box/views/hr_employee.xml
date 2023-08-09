@@ -5,12 +5,16 @@
         <field name="model">hr.employee</field>
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='parent_id']" position="after">
-                <field name="contratante_id" />
-                <field name="amazon_identificacion" />
-                <field name="amazon_nombre_mensajero" />
-                <field name="amazon_estado" />
-                <field name="amazon_reason_codes_id" />
+            <xpath expr="//notebook" position="inside">
+                <page name="amazon" string="Amazon">
+                    <group>
+                        <field name="amazon_identificacion" />
+                        <field name="amazon_nombre_mensajero" />
+                        <field name="amazon_estado" />
+                        <field name="amazon_reason_codes_id" />
+                        <field name="contratante_empleado_id" />
+                    </group>
+                </page>
             </xpath>
         </field>
     </record>

@@ -12,7 +12,7 @@ class ServiceDetailsReport(models.Model):
     inicio_sesion = fields.Datetime(string='Inicio de sesión')
     cierre_sesion = fields.Datetime(string='Fin de sesión')
     amazon_identificacion = fields.Char(string = "Amazon Identificación", related='empleado_id.amazon_identificacion', store=True)
-    contratante_empleado_id = fields.Many2one('res.partner', string = "Contratante", related="empleado_id.contratante_id", store=True)
+    contratante_empleado_amazon_id = fields.Many2one('res.partner', string = "Contratante", related="empleado_id.contratante_empleado_id", store=True)
     amazon_ruta_id = fields.Many2one('e_box.amazon_rutas', string='Ruta')
     amazon_tipo_servicio_id = fields.Many2one('e_box.amazon_tipo_servicio', string='Tipo servicio')
     puesto_id = fields.Many2one('hr.job', string = 'Puesto', related='empleado_id.job_id', store=True)
@@ -25,6 +25,7 @@ class ServiceDetailsReport(models.Model):
     paquetes_entregado = fields.Integer(string='Paq. Entregados')
     paquetes_devuelto = fields.Integer(string='Paq. Devueltos')
     amazon_nombre_mensajero = fields.Char(string = "Nombre mensajero", related='empleado_id.amazon_nombre_mensajero', store=True)
+    old_id = fields.Integer(string='Old id.')
 
 class AmazonDuracionPlanificada(models.Model):
     _name = 'e_box.amazon_duracion_planificada'
