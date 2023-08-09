@@ -16,6 +16,7 @@ class ServiceDetailsReport(models.Model):
     amazon_ruta_id = fields.Many2one('e_box.amazon_rutas', string='Ruta')
     amazon_tipo_servicio_id = fields.Many2one('e_box.amazon_tipo_servicio', string='Tipo servicio')
     puesto_id = fields.Many2one('hr.job', string = 'Puesto', related='empleado_id.job_id', store=True)
+    amazon_delivery_id = fields.Many2one('e_box.amazon_delivery', string='Delivery')
     asalariado_de_id = fields.Many2one('res.partner', string = 'Asalariado de', related='empleado_id.asalariado_de_id', store=True)
     distancia_total_planificada = fields.Integer(string='Distancia total planificada')
     distancia_total_permitida = fields.Integer(string='Distancia total permitida')
@@ -52,6 +53,11 @@ class AmazonTipoServicio(models.Model):
     _name = 'e_box.amazon_tipo_servicio'
 
     name = fields.Char(string='Tipo servicio')
+
+class AmazonDelivery(models.Model):
+    _name = 'e_box.amazon_delivery'
+
+    name = fields.Char(string='Delivery')
 
 class AmazonUnidadDistancia(models.Model):
     _name = 'e_box.amazon_unidad_distancia'

@@ -49,31 +49,20 @@ class AmazonImportEBLM(models.Model):
                 amazon_unidad_distancia_id = self.env['e_box.amazon_unidad_distancia'].create({
                     'name' : row['Unidad de distancia']
                 })
-            inicio_sesion = datetime.strptime(row['Inicio de sesión'], '%Y-%m-%dT%H:%M:%S.%fZ')
-            cierre_sesion = datetime.strptime(row['Cierre de sesión'], '%Y-%m-%dT%H:%M:%S.%fZ')
-            #Evitamos duplicados
-            service_details_report_id = self.env['e_box.service_details_report'].search([
-                ('empleado_id', '=', empleado_id.id),
-                ('amazon_duracion_planificada_id', '=', amazon_duracion_planificada_id.id),
-                ('inicio_sesion', '=', inicio_sesion),
-                ('cierre_sesion', '=', cierre_sesion),
-                ('amazon_ruta_id', '=', amazon_ruta_id.id),
-                ('amazon_tipo_servicio_id', '=', amazon_tipo_servicio_id.id)
-            ])
-            if not service_details_report_id:
-                self.env['e_box.service_details_report'].create({
-                    'fecha': row['Fecha'],
-                    'empleado_id': empleado_id.id,
-                    'amazon_duracion_planificada_id': amazon_duracion_planificada_id.id,
-                    'inicio_sesion': inicio_sesion,
-                    'cierre_sesion': cierre_sesion,
-                    'amazon_ruta_id': amazon_ruta_id.id,
-                    'amazon_tipo_servicio_id': amazon_tipo_servicio_id.id,
-                    'distancia_total_planificada': row['Distancia total planificada'],
-                    'distancia_total_permitida': row['Distancia total permitida'],
-                    'amazon_unidad_distancia_id': amazon_unidad_distancia_id.id,
-                    'paquetes_total': int(row['Envíos entregados']) + int(row['Envíos devueltos']),
-                    'paquetes_entregado': row['Envíos entregados'],
-                    'paquetes_devuelto': row['Envíos devueltos'],    
-                })
+            self.env['e_box.service_details_report'].create({
+                'fecha': row['Fecha'],
+                'empleado_id': empleado_id.id,
+                'amazon_duracion_planificada_id': amazon_duracion_planificada_id.id,
+                'inicio_sesion': datetime.strptime(row['Inicio de sesión'], '%Y-%m-%dT%H:%M:%S.%fZ'),
+                'cierre_sesion': datetime.strptime(row['Cierre de sesión'], '%Y-%m-%dT%H:%M:%S.%fZ'),
+                'amazon_ruta_id': amazon_ruta_id.id,
+                'amazon_tipo_servicio_id': amazon_tipo_servicio_id.id,
+                'amazon_delivery_id': False,
+                'distancia_total_planificada': row['Distancia total planificada'],
+                'distancia_total_permitida': row['Distancia total permitida'],
+                'amazon_unidad_distancia_id': amazon_unidad_distancia_id.id,
+                'paquetes_total': row['Envíos entregados'] + row['Envíos devueltos'],
+                'paquetes_entregado': row['Envíos entregados'],
+                'paquetes_devuelto': row['Envíos devueltos'],    
+            })
         return {'type': 'ir.actions.client', 'tag': 'reload'}
