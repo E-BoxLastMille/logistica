@@ -28,9 +28,13 @@
 
     # always loaded
     'data': [
+        'security/ir.model.access.csv',
         'views/hr_contract.xml',
         'views/hr_contract_history.xml',
         'views/hr_employee.xml',
         'views/fleet_vehicle.xml',
+        'views/e_box_service_details_report.xml',
+        'views/menu.xml',
+        'wizard/amazon_import_eblm.xml',
     ],
 }

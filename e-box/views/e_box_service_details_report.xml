@@ -1,0 +1,339 @@
+<odoo>
+    <record id="service_details_report_tree_search" model="ir.ui.view">
+        <field name="name">e_box.service_details_report.search</field>
+        <field name="model">e_box.service_details_report</field>
+        <field type="xml" name="arch">
+            <search>
+                <field name="fecha"/>
+                <field name="empleado_id"/>
+                <field name="amazon_identificacion"/>
+                <filter name="group_by_fecha" string="Fecha" context="{'group_by' : 'fecha'}"/>
+                <filter name="group_by_create_amazon_delivery_id" string="Delivery" context="{'group_by' : 'amazon_delivery_id'}"/>
+                <filter name="group_by_empleado_id" string="Empleado" context="{'group_by' : 'empleado_id'}"/>
+                <filter name="group_by_amazon_identificacion" string="Amazon identificación" context="{'group_by' : 'amazon_identificacion'}"/>
+                <filter name="group_by_contratante_empleado_id" string="Contratante" context="{'group_by' : 'contratante_empleado_id'}"/>
+                <filter name="group_by_create_amazon_ruta_id" string="Ruta" context="{'group_by' : 'amazon_ruta_id'}"/>
+                <filter name="group_by_create_amazon_tipo_servicio_id" string="Tipo servicio" context="{'group_by' : 'amazon_tipo_servicio_id'}"/>
+                <filter name="group_by_create_puesto_id" string="Puesto" context="{'group_by' : 'puesto_id'}"/>
+                <filter name="group_by_create_asalariado_de_id" string="Asalariado" context="{'group_by' : 'asalariado_de_id'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="service_details_report_tree" model="ir.ui.view">
+        <field name="name">e_box.service_details_report.tree</field>
+        <field name="model">e_box.service_details_report</field>
+        <field type="xml" name="arch">
+            <tree create="false" delete="false" edit="false">
+                <field name="fecha"/>
+                <field name="amazon_delivery_id"/>
+                <field name="empleado_id"/>
+                <field name="departamento_id" optional="hide"/>
+                <field name="puesto_id" optional="hide"/>
+                <field name="amazon_identificacion"/>
+                <field name="amazon_nombre_mensajero"/>
+                <field name="amazon_ruta_id"/>
+                <field name="amazon_tipo_servicio_id"/>
+                <field name="amazon_duracion_planificada_id"/>
+                <field name="inicio_sesion"/>
+                <field name="cierre_sesion"/>
+                <field name="distancia_total_planificada"/>
+                <field name="distancia_total_permitida"/>
+                <field name="amazon_unidad_distancia_id"/>
+                <field name="paquetes_total"/>
+                <field name="paquetes_entregado"/>
+                <field name="paquetes_devuelto"/>                
+                <field name="contratante_empleado_id" optional="hide"/>
+                <field name="asalariado_de_id" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="service_details_report_form" model="ir.ui.view" >
+        <field name="name">e_box.service_details_report.form</field>
+        <field name="model">e_box.service_details_report</field>
+        <field type="xml" name="arch">
+            <form create="false" delete="false" edit="false">
+                <sheet>
+                    <group>
+                <field name="fecha"/>
+                <field name="amazon_delivery_id"/>
+                <field name="empleado_id"/>
+                <field name="departamento_id"/>
+                <field name="puesto_id"/>
+                <field name="amazon_identificacion"/>
+                <field name="amazon_nombre_mensajero"/>
+                <field name="amazon_ruta_id"/>
+                <field name="amazon_tipo_servicio_id"/>
+                <field name="amazon_duracion_planificada_id"/>
+                <field name="inicio_sesion"/>
+                <field name="cierre_sesion"/>
+                <field name="distancia_total_planificada"/>
+                <field name="distancia_total_permitida"/>
+                <field name="amazon_unidad_distancia_id"/>
+                <field name="paquetes_total"/>
+                <field name="paquetes_entregado"/>
+                <field name="paquetes_devuelto"/>                
+                <field name="contratante_empleado_id"/>
+                <field name="asalariado_de_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="act_window_service_details_report" model="ir.actions.act_window" >
+        <field name="name">EBLM Service Details Report</field>
+        <field name="res_model">e_box.service_details_report</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="amazon_duracion_planificada_search" model="ir.ui.view">
+        <field name="name">e_box.amazon_duracion_planificada.search</field>
+        <field name="model">e_box.amazon_duracion_planificada</field>
+        <field type="xml" name="arch">
+            <search>
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="amazon_duracion_planificada_tree" model="ir.ui.view">
+        <field name="name">e_box.amazon_duracion_planificada.tree</field>
+        <field name="model">e_box.amazon_duracion_planificada</field>
+        <field type="xml" name="arch">
+            <tree>
+                <field name="name"/>
+                <field name="precio"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="amazon_duracion_planificada_form" model="ir.ui.view" >
+        <field name="name">e_box.amazon_duracion_planificada.form</field>
+        <field name="model">e_box.amazon_duracion_planificada</field>
+        <field type="xml" name="arch">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="precio"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="act_window_amazon_duracion_planificada" model="ir.actions.act_window" >
+        <field name="name">Amazon duración planificada</field>
+        <field name="res_model">e_box.amazon_duracion_planificada</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="amazon_reason_codes_search" model="ir.ui.view">
+        <field name="name">e_box.amazon_reason_codes.search</field>
+        <field name="model">e_box.amazon_reason_codes</field>
+        <field type="xml" name="arch">
+            <search>
+                <field name="name"/>
+                <filter name="group_by_amazon_estado" string="Amazon estado" context="{'group_by' : 'amazon_estado'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="amazon_reason_codes_tree" model="ir.ui.view">
+        <field name="name">e_box.amazon_reason_codes.tree</field>
+        <field name="model">e_box.amazon_reason_codes</field>
+        <field type="xml" name="arch">
+            <tree>
+                <field name="name"/>
+                <field name="amazon_estado"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="amazon_reason_codes_form" model="ir.ui.view" >
+        <field name="name">e_box.amazon_reason_codes.form</field>
+        <field name="model">e_box.amazon_reason_codes</field>
+        <field type="xml" name="arch">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="amazon_estado"/>
+                        <field name="nota"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="act_window_amazon_reason_codes" model="ir.actions.act_window" >
+        <field name="name">Amazon reason codes</field>
+        <field name="res_model">e_box.amazon_reason_codes</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="amazon_rutas_search" model="ir.ui.view">
+        <field name="name">e_box.amazon_rutas.search</field>
+        <field name="model">e_box.amazon_rutas</field>
+        <field type="xml" name="arch">
+            <search>
+                <field name="name"/>
+                <filter name="group_by_departamento_id" string="Departamento" context="{'group_by' : 'departamento_id'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="amazon_rutas_tree" model="ir.ui.view">
+        <field name="name">e_box.amazon_rutas.tree</field>
+        <field name="model">e_box.amazon_rutas</field>
+        <field type="xml" name="arch">
+            <tree>
+                <field name="name"/>
+                <field name="departamento_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="amazon_rutas_form" model="ir.ui.view" >
+        <field name="name">e_box.amazon_rutas.form</field>
+        <field name="model">e_box.amazon_rutas</field>
+        <field type="xml" name="arch">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="departamento_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="act_window_amazon_rutas" model="ir.actions.act_window" >
+        <field name="name">Amazon rutas</field>
+        <field name="res_model">e_box.amazon_rutas</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="amazon_tipo_servicio_search" model="ir.ui.view">
+        <field name="name">e_box.amazon_tipo_servicio.search</field>
+        <field name="model">e_box.amazon_tipo_servicio</field>
+        <field type="xml" name="arch">
+            <search>
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="amazon_tipo_servicio_tree" model="ir.ui.view">
+        <field name="name">e_box.amazon_tipo_servicio.tree</field>
+        <field name="model">e_box.amazon_tipo_servicio</field>
+        <field type="xml" name="arch">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="amazon_tipo_servicio_form" model="ir.ui.view" >
+        <field name="name">e_box.amazon_tipo_servicio.form</field>
+        <field name="model">e_box.amazon_tipo_servicio</field>
+        <field type="xml" name="arch">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="act_window_amazon_tipo_servicio" model="ir.actions.act_window" >
+        <field name="name">Amazon tipo servicio</field>
+        <field name="res_model">e_box.amazon_tipo_servicio</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="amazon_delivery_search" model="ir.ui.view">
+        <field name="name">e_box.amazon_delivery.search</field>
+        <field name="model">e_box.amazon_delivery</field>
+        <field type="xml" name="arch">
+            <search>
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="amazon_delivery_tree" model="ir.ui.view">
+        <field name="name">e_box.amazon_delivery.tree</field>
+        <field name="model">e_box.amazon_delivery</field>
+        <field type="xml" name="arch">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="amazon_delivery_form" model="ir.ui.view" >
+        <field name="name">e_box.amazon_delivery.form</field>
+        <field name="model">e_box.amazon_delivery</field>
+        <field type="xml" name="arch">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="act_window_amazon_delivery" model="ir.actions.act_window" >
+        <field name="name">Amazon delivery</field>
+        <field name="res_model">e_box.amazon_delivery</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="amazon_unidad_distancia_search" model="ir.ui.view">
+        <field name="name">e_box.amazon_unidad_distancia.search</field>
+        <field name="model">e_box.amazon_unidad_distancia</field>
+        <field type="xml" name="arch">
+            <search>
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="amazon_unidad_distancia_tree" model="ir.ui.view">
+        <field name="name">e_box.amazon_unidad_distancia.tree</field>
+        <field name="model">e_box.amazon_unidad_distancia</field>
+        <field type="xml" name="arch">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="amazon_unidad_distancia_form" model="ir.ui.view" >
+        <field name="name">e_box.amazon_unidad_distancia.form</field>
+        <field name="model">e_box.amazon_unidad_distancia</field>
+        <field type="xml" name="arch">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="act_window_amazon_unidad_distancia" model="ir.actions.act_window" >
+        <field name="name">Amazon unidad distancia</field>
+        <field name="res_model">e_box.amazon_unidad_distancia</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
