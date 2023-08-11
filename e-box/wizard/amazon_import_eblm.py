@@ -9,6 +9,16 @@ from odoo import models, fields
 import logging
 _logger = logging.getLogger(__name__)
 
+def parse_date(date_str):
+    """Intenta analizar una fecha con múltiples formatos"""
+    formats = ['%Y-%m-%dT%H:%M:%SZ', '%Y-%m-%dT%H:%M:%S.%fZ']
+    for fmt in formats:
+        try:
+            return datetime.strptime(date_str, fmt)
+        except ValueError:
+            pass
+    raise ValueError(f"La cadena {date_str} no coincide con ningún formato conocido.")
+
 class AmazonImportEBLM(models.Model):
     _name = 'e_box.amazon_import_eblm'
 
@@ -27,6 +37,8 @@ class AmazonImportEBLM(models.Model):
                 ('name','ilike', row['Mensajero']),
                 ('amazon_nombre_mensajero','ilike', row['Mensajero'])
             ], limit = 1, order='id desc')
+            if row['Inicio de sesión'] == '' or row['Cierre de sesión'] == '':
+                continue
             if not empleado_id:
                 continue
             amazon_delivery_id = self.env['e_box.amazon_delivery'].search([('name','=', row['Estación'])])
@@ -54,8 +66,8 @@ class AmazonImportEBLM(models.Model):
                 amazon_unidad_distancia_id = self.env['e_box.amazon_unidad_distancia'].create({
                     'name' : row['Unidad de distancia']
                 })
-            inicio_sesion = datetime.strptime(row['Inicio de sesión'], '%Y-%m-%dT%H:%M:%S.%fZ')
-            cierre_sesion = datetime.strptime(row['Cierre de sesión'], '%Y-%m-%dT%H:%M:%S.%fZ')
+            inicio_sesion = parse_date(row['Inicio de sesión'])
+            cierre_sesion = parse_date(row['Cierre de sesión'])
             #Evitamos duplicados
             service_details_report_id = self.env['e_box.service_details_report'].search([
                 ('fecha', '=', row['Fecha']),
