@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-from odoo import models, fields
+from odoo import api, models, fields
 
 class ServiceDetailsReport(models.Model):
     _name = 'e_box.service_details_report'
@@ -26,6 +26,14 @@ class ServiceDetailsReport(models.Model):
     paquetes_devuelto = fields.Integer(string='Paq. Devueltos')
     amazon_nombre_mensajero = fields.Char(string = "Nombre mensajero", related='empleado_id.amazon_nombre_mensajero', store=True)
     old_id = fields.Integer(string='Old id.')
+    numero_semana_amazon = fields.Integer(string='Número de Semana Amazon', compute='_compute_numero_semana_amazon', store=True)
+
+    @api.depends('fecha')
+    def _compute_numero_semana_amazon(self):
+        for record in self:
+            if record.fecha:
+                # Usando strftime() con %U para considerar el domingo como el primer día
+                record.numero_semana_amazon = int(record.fecha.strftime('%U')) + 1
 
 class AmazonDuracionPlanificada(models.Model):
     _name = 'e_box.amazon_duracion_planificada'
