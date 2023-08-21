@@ -35,7 +35,7 @@ class ServiceDetailsReport(models.Model):
                 # Usando strftime() con %U para considerar el domingo como el primer día
                 week_number = int(record.fecha.strftime('%U'))
                 # Si es domingo y el número de semana es 0, entonces es la semana 1
-                if record.fecha.weekday() == 6 and week_number == 0:
+                if record.fecha.weekday() <= 6 and week_number == 0:
                     record.numero_semana_amazon = 1
                 else:
                     record.numero_semana_amazon = week_number + 1

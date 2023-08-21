@@ -18,7 +18,7 @@ class HrAttendance(models.Model):
                 # Usando strftime() con %U para considerar el domingo como el primer día
                 week_number = int(check_in_date.strftime('%U'))
                 # Si es domingo y el número de semana es 0, entonces es la semana 1
-                if check_in_date.weekday() == 6 and week_number == 0:
+                if check_in_date.weekday() <= 6 and week_number == 0:
                     record.numero_semana_amazon = 1
                 else:
                     record.numero_semana_amazon = week_number + 1
