@@ -8,6 +8,7 @@
                 <field name="empleado_id"/>
                 <field name="amazon_identificacion"/>
                 <filter name="group_by_fecha" string="Fecha" context="{'group_by' : 'fecha'}"/>
+                <filter name="group_by_numero_semana_amazon" string="Semana amazon" context="{'group_by' : 'numero_semana_amazon'}"/>
                 <filter name="group_by_create_amazon_delivery_id" string="Delivery" context="{'group_by' : 'amazon_delivery_id'}"/>
                 <filter name="group_by_empleado_id" string="Empleado" context="{'group_by' : 'empleado_id'}"/>
                 <filter name="group_by_amazon_identificacion" string="Amazon identificación" context="{'group_by' : 'amazon_identificacion'}"/>
@@ -26,6 +27,7 @@
         <field type="xml" name="arch">
             <tree create="false" delete="false" edit="false">
                 <field name="fecha"/>
+                <field name="numero_semana_amazon"/>
                 <field name="amazon_delivery_id"/>
                 <field name="empleado_id"/>
                 <field name="departamento_id" optional="hide"/>
@@ -57,6 +59,7 @@
                 <sheet>
                     <group>
                 <field name="fecha"/>
+                <field name="numero_semana_amazon"/>
                 <field name="amazon_delivery_id"/>
                 <field name="empleado_id"/>
                 <field name="departamento_id"/>

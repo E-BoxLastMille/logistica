@@ -1,11 +1,12 @@
 # -*- coding:utf-8 -*-
 
-from odoo import models, fields
+from odoo import api, models, fields
+from datetime import datetime, timedelta
 
 class ServiceDetailsReport(models.Model):
     _name = 'e_box.service_details_report'
 
-    fecha = fields.Date(string='Fecha')
+    fecha = fields.Date(string='Fecha', required = True)
     empleado_id = fields.Many2one('hr.employee', string='Empleado')
     departamento_id = fields.Many2one('hr.department', string = 'Departamento (Estación)', related='empleado_id.department_id', store=True)
     amazon_duracion_planificada_id = fields.Many2one('e_box.amazon_duracion_planificada', string='Duración planificada')
@@ -26,6 +27,26 @@ class ServiceDetailsReport(models.Model):
     paquetes_devuelto = fields.Integer(string='Paq. Devueltos')
     amazon_nombre_mensajero = fields.Char(string = "Nombre mensajero", related='empleado_id.amazon_nombre_mensajero', store=True)
     old_id = fields.Integer(string='Old id.')
+    numero_semana_amazon = fields.Integer(string='Número de Semana Amazon', compute='_compute_numero_semana_amazon', store=True)
+
+    @api.depends('fecha')
+    def _compute_numero_semana_amazon(self):
+        for record in self:
+            fecha = datetime(record.fecha.year, record.fecha.month, record.fecha.day)
+            # Obtener el día de la semana (0 = lunes, 6 = domingo)
+            dia_semana = fecha.weekday()
+            # Ajustar el día de la semana para que 0 sea domingo en lugar de lunes
+            dia_semana = (dia_semana + 1) % 7
+            # Obtener la fecha del primer domingo del año
+            primer_dia_anio = datetime(fecha.year, 1, 1)
+            primer_domingo = primer_dia_anio + timedelta(days=(6 - primer_dia_anio.weekday()) % 7)
+            # Si la fecha es anterior al primer domingo del año, se toma en cuenta el año anterior
+            if fecha < primer_domingo:
+                primer_dia_anio = datetime(fecha.year - 1, 1, 1)
+                primer_domingo = primer_dia_anio + timedelta(days=(6 - primer_dia_anio.weekday()) % 7)
+            # Calcular el número de semanas completas
+            numero_semana = (fecha- primer_domingo).days // 7 + 1
+            record.numero_semana_amazon = numero_semana
 
 class AmazonDuracionPlanificada(models.Model):
     _name = 'e_box.amazon_duracion_planificada'
