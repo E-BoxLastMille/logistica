@@ -5,6 +5,7 @@ from io import StringIO
 from datetime import datetime
 
 from odoo import models, fields
+from odoo.exceptions import UserError
 
 import logging
 _logger = logging.getLogger(__name__)
@@ -31,6 +32,7 @@ class AmazonImportEBLM(models.Model):
         file_input = StringIO(csv_file.decode('utf-8-sig'))
         file_input.seek(0)
         reader = csv.DictReader(file_input, delimiter=',')
+        missing_mensajeros = set()
         for row in reader:
             empleado_id = self.env['hr.employee'].search([
                 '|',
@@ -40,6 +42,8 @@ class AmazonImportEBLM(models.Model):
             if row['Inicio de sesión'] == '' or row['Cierre de sesión'] == '':
                 continue
             if not empleado_id:
+                if row['Mensajero']:
+                    missing_mensajeros.add(row['Mensajero'])
                 continue
             amazon_delivery_id = self.env['e_box.amazon_delivery'].search([('name','=', row['Estación'])])
             if not amazon_delivery_id:
@@ -96,4 +100,6 @@ class AmazonImportEBLM(models.Model):
                     'paquetes_entregado': row['Envíos entregados'],
                     'paquetes_devuelto': row['Envíos devueltos'],    
                 })
+        if missing_mensajeros:
+            raise UserError('Los registros de los siguientes mensajeros no han podido ser importados porque no existen en Odoo:\n\n%s' % '\n'.join(missing_mensajeros))
         return {'type': 'ir.actions.client', 'tag': 'reload'}
