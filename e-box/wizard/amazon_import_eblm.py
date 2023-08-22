@@ -34,11 +34,11 @@ class AmazonImportEBLM(models.Model):
         reader = csv.DictReader(file_input, delimiter=',')
         missing_mensajeros = set()
         for row in reader:
-            empleado_id = self.env['hr.employee'].search([
+            empleado_id = self.env['hr.employee'].with_context(active_test=False).search([
                 '|',
                 ('name','ilike', row['Mensajero']),
                 ('amazon_nombre_mensajero','ilike', row['Mensajero'])
-            ], limit = 1, order='id desc')
+            ], limit=1, order='id desc')
             if row['Inicio de sesión'] == '' or row['Cierre de sesión'] == '':
                 continue
             if not empleado_id:
