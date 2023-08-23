@@ -6,9 +6,9 @@
         <field name="inherit_id" ref="hr_attendance.hr_attendance_view_filter"/>
         <field name="arch" type="xml">
             <xpath expr="//group" position="inside">
-                <field name="asalariado_de_id"/>
+                <field name="asalariado_de_empleado_id"/>
                 <filter name="group_by_numero_semana_amazon" string="Semana amazon" context="{'group_by' : 'numero_semana_amazon'}"/>
-                <filter name="group_by_asalariado_de_id" string="Asalariado de" context="{'group_by' : 'asalariado_de_id'}"/>
+                <filter name="group_by_asalariado_de_empleado_id" string="Asalariado de" context="{'group_by' : 'asalariado_de_empleado_id'}"/>
             </xpath>
         </field>
     </record>
@@ -19,7 +19,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='employee_id']" position="after">
                 <field name="contratante_empleado_id" />
-                <field name="asalariado_de_id"/>
+                <field name="asalariado_de_empleado_id"/>
                 <field name="numero_semana_amazon" />
             </xpath>
         </field>
