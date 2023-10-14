@@ -23,6 +23,7 @@
         'base',
         'hr',
         'hr_contract',
+        'hr_attendance',
         'fleet',
     ],
 

@@ -10,6 +10,7 @@
                 <field name="asalariado_de_empleado_id"/>
                 <filter name="groupby_department" string="Departmento" domain="[]" context="{'group_by': 'department_id'}"/>
                 <filter name="group_by_vehiculo_id" string="Vehículo" context="{'group_by' : 'vehiculo_id'}"/>
+                <filter name="group_by_tipo_ruta_id" string="Tipo ruta" context="{'group_by' : 'tipo_ruta_id'}"/>
                 <filter name="group_by_acontratante_empleado_id" string="Contratante empleado" context="{'group_by' : 'contratante_empleado_id'}"/>
                 <filter name="group_by_asalariado_de_empleado_id" string="Asalariado de" context="{'group_by' : 'asalariado_de_empleado_id'}"/>
                 <filter name="group_by_numero_semana_amazon" string="Semana amazon" context="{'group_by' : 'numero_semana_amazon'}"/>
@@ -23,10 +24,30 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='employee_id']" position="after">
                 <field name="vehiculo_id" />
+                <field name="tipo_ruta_id" />
                 <field name="contratante_empleado_id" />
                 <field name="asalariado_de_empleado_id"/>
                 <field name="numero_semana_amazon" />
             </xpath>
         </field>
+    </record>
+    <!-- Acción de ventana para abrir la vista de lista de tipos de rutas -->
+    <record id="action_tipo_ruta" model="ir.actions.act_window">
+        <field name="name">Tipos de Ruta</field>
+        <field name="res_model">e_box.tipo_ruta</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Añade aquí tus nuevos tipos de rutas.
+            </p>
+        </field>
+    </record>
+
+    <!-- Elemento de menú para tipos de ruta -->
+    <record id="menu_tipo_ruta" model="ir.ui.menu">
+        <field name="name">Tipos de Ruta</field>
+        <field name="parent_id" ref="hr_attendance.menu_hr_attendance_settings"/>
+        <field name="action" ref="action_tipo_ruta"/>
+        <field name="sequence" eval="10"/>
     </record>
 </odoo>

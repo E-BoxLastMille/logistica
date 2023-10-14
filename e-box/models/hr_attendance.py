@@ -11,6 +11,7 @@ class HrAttendance(models.Model):
     asalariado_de_empleado_id = fields.Many2one('res.partner', string = "Asalariado de (ok)", related="employee_id.asalariado_de_id", store=True)
     numero_semana_amazon = fields.Integer(string='Número de Semana Amazon', compute='_compute_numero_semana_amazon', store=True)
     vehiculo_id = fields.Many2one('fleet.vehicle', string = "Vehículo")
+    tipo_ruta_id = fields.Many2one('e_box.tipo_ruta', string='Tipo Ruta')
 
     @api.depends('check_in')
     def _compute_numero_semana_amazon(self):
@@ -30,3 +31,9 @@ class HrAttendance(models.Model):
             # Calcular el número de semanas completas
             numero_semana = (fecha - primer_domingo).days // 7 + 1
             record.numero_semana_amazon = numero_semana
+
+class TipoRuta(models.Model):
+    _name = 'e_box.tipo_ruta'
+    _description = 'Tipo de Ruta'
+
+    name = fields.Char(string='Nombre de la Ruta', required=True)
