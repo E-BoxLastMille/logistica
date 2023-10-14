@@ -8,6 +8,7 @@
             <xpath expr="//group" position="inside">
                 <field name="vehiculo_id"/>
                 <field name="asalariado_de_empleado_id"/>
+                <filter name="groupby_department" string="Departmento" domain="[]" context="{'group_by': 'department_id'}"/>
                 <filter name="group_by_vehiculo_id" string="Vehículo" context="{'group_by' : 'vehiculo_id'}"/>
                 <filter name="group_by_acontratante_empleado_id" string="Contratante empleado" context="{'group_by' : 'contratante_empleado_id'}"/>
                 <filter name="group_by_asalariado_de_empleado_id" string="Asalariado de" context="{'group_by' : 'asalariado_de_empleado_id'}"/>
