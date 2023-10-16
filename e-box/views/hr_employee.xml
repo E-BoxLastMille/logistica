@@ -21,4 +21,33 @@
             </xpath>
         </field>
     </record>
+
+    <record id="view_employee_tree_ebox" model="ir.ui.view">
+        <field name="name">hr.employee.tree.ebox</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='job_id']" position="after">
+                <field name="amazon_identificacion" optional="hide"/>
+                <field name="amazon_nombre_mensajero" optional="hide" />
+                <field name="amazon_estado" optional="show" />
+                <field name="amazon_reason_codes_id" optional="hide" />
+                <field name="contratante_empleado_id" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_employee_filter_ebox" model="ir.ui.view">
+        <field name="name">hr.employee.search.ebox</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='job_id']" position="after">
+                <field name="amazon_identificacion"/>
+            </xpath>
+            <xpath expr="//filter[@name='group_job']" position="after">
+                <filter name="group_amazon_estado" string="Amazon estado" domain="[]" context="{'group_by': 'amazon_estado'}"/>
+            </xpath>
+        </field>
+    </record>
 </odoo>
