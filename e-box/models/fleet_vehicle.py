@@ -6,3 +6,5 @@ class FleetVehicle(models.Model):
     _inherit = 'fleet.vehicle'
 
     department_id = fields.Many2one('hr.department', string='Departamento')
+
+    propietario_id = fields.Many2one('res.partner', string = "Propietario")
