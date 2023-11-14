@@ -29,6 +29,7 @@
 
     # always loaded
     'data': [
+        'security/e_box_security.xml',
         'security/ir.model.access.csv',
         'views/hr_contract.xml',
         'views/hr_contract_history.xml',
