@@ -16,7 +16,7 @@
                     </group>
                 </page>
             </xpath>
-            <xpath expr="//group[@name='payroll_group']" position="inside">
+            <xpath expr="//field[@name='job_id']" position="after">
                 <field name="asalariado_de_id" />
             </xpath>
         </field>
