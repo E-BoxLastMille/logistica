@@ -40,12 +40,12 @@ class ServiceDetailsReport(models.Model):
             # Obtener la fecha del primer domingo del año
             primer_dia_anio = datetime(fecha.year, 1, 1)
             primer_domingo = primer_dia_anio + timedelta(days=(6 - primer_dia_anio.weekday()) % 7)
-            # Si la fecha es anterior al primer domingo del año, se toma en cuenta el año anterior
+            # Si la fecha es anterior al primer domingo del año se trata de la semana 1
             if fecha < primer_domingo:
-                primer_dia_anio = datetime(fecha.year - 1, 1, 1)
-                primer_domingo = primer_dia_anio + timedelta(days=(6 - primer_dia_anio.weekday()) % 7)
-            # Calcular el número de semanas completas
-            numero_semana = (fecha- primer_domingo).days // 7 + 1
+                numero_semana = 1
+            else:
+                # Calcular el número de semanas completas
+                numero_semana = (fecha- primer_domingo).days // 7 + 2
             record.numero_semana_amazon = numero_semana
 
 class AmazonDuracionPlanificada(models.Model):
