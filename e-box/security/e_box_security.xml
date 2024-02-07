@@ -4,5 +4,29 @@
         <record id="oficina" model="res.groups">
             <field name="name">Ebox Oficina</field>
         </record>
+        <!-- Definición de la regla de registro para mostrar solo los empleados de los departamentos del usuario -->
+        <record id="employee_department_rule" model="ir.rule">
+            <field name="name">Empleado: Limitar empleados de los departamentos del usuario</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="domain_force">['|', ('department_id', 'in', user.department_ids.ids), ('department_id', '=', False)]</field>
+        </record>
+        <!-- Definición de la regla de registro para mostrar solo los departamentos de los departamentos del usuario -->
+        <record id="department_department_rule" model="ir.rule">
+            <field name="name">Departamento: Limitar departamentos de los departamentos del usuario</field>
+            <field name="model_id" ref="hr.model_hr_department"/>
+            <field name="domain_force">[('id', 'in', user.department_ids.ids)]</field>
+        </record>
+        <!-- Definición de la regla de registro para mostrar solo las asistencias de empleados de los departamentos del usuario -->
+        <record id="attendance_department_rule" model="ir.rule">
+            <field name="name">Asistencia: Limitar asistencias a los departamentos del usuario</field>
+            <field name="model_id" ref="hr_attendance.model_hr_attendance"/>
+            <field name="domain_force">[('employee_id.department_id', 'in', user.department_ids.ids)]</field>
+        </record>
+        <!-- Definición de la regla de registro para mostrar solo los vehículos del departamento del usuario -->
+        <record id="vehicle_department_rule" model="ir.rule">
+            <field name="name">Vehículo: Limitar vehículos a los departamentos del usuario</field>
+            <field name="model_id" ref="fleet.model_fleet_vehicle"/>
+            <field name="domain_force">['|', ('department_id', 'in', user.department_ids.ids), ('department_id', '=', False)]</field>
+        </record>
     </data>
 </odoo>
