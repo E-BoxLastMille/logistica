@@ -38,6 +38,7 @@
         'views/e_box_service_details_report.xml',
         'views/menu.xml',
         'views/hr_attendance.xml',
+        'views/res_users.xml',
         'wizard/amazon_import_eblm.xml',
     ],
 }
