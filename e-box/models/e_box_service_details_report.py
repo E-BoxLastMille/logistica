@@ -32,21 +32,39 @@ class ServiceDetailsReport(models.Model):
     @api.depends('fecha')
     def _compute_numero_semana_amazon(self):
         for record in self:
-            fecha = datetime(record.fecha.year, record.fecha.month, record.fecha.day)
-            # Obtener el día de la semana (0 = lunes, 6 = domingo)
-            dia_semana = fecha.weekday()
-            # Ajustar el día de la semana para que 0 sea domingo en lugar de lunes
-            dia_semana = (dia_semana + 1) % 7
-            # Obtener la fecha del primer domingo del año
-            primer_dia_anio = datetime(fecha.year, 1, 1)
-            primer_domingo = primer_dia_anio + timedelta(days=(6 - primer_dia_anio.weekday()) % 7)
-            # Si la fecha es anterior al primer domingo del año se trata de la semana 1
-            if fecha < primer_domingo:
-                numero_semana = 1
+            if record.fecha.year >= 2024:
+                record.numero_semana_amazon = self.calculo_semana_2024_us(record.fecha)
             else:
-                # Calcular el número de semanas completas
-                numero_semana = (fecha- primer_domingo).days // 7 + 2
-            record.numero_semana_amazon = numero_semana
+                fecha = datetime(record.fecha.year, record.fecha.month, record.fecha.day)
+                # Obtener el día de la semana (0 = lunes, 6 = domingo)
+                dia_semana = fecha.weekday()
+                # Ajustar el día de la semana para que 0 sea domingo en lugar de lunes
+                dia_semana = (dia_semana + 1) % 7
+                # Obtener la fecha del primer domingo del año
+                primer_dia_anio = datetime(fecha.year, 1, 1)
+                primer_domingo = primer_dia_anio + timedelta(days=(6 - primer_dia_anio.weekday()) % 7)
+                # Si la fecha es anterior al primer domingo del año se trata de la semana 1
+                if fecha < primer_domingo:
+                    numero_semana = 1
+                else:
+                    # Calcular el número de semanas completas
+                    numero_semana = (fecha- primer_domingo).days // 7 + 2
+                record.numero_semana_amazon = numero_semana
+
+    def calculo_semana_2024_us(self, fecha):
+        """ Calcula el número de semana para una fecha dada según las reglas del calendario de Estados Unidos.
+
+        En el calendario de EE. UU., la semana comienza el domingo y termina el sábado.
+        Este método asume que la primera semana del año comienza con el primer domingo de enero o
+        si el 1 de enero es un domingo, ese día comienza la primera semana. Cualquier fecha anterior
+        al primer domingo se considera parte de la semana 1.
+        """
+        primer_dia_anio = datetime(fecha.year, 1, 1)
+        if primer_dia_anio.weekday() != 6:  # 6 es domingo
+            primer_dia_anio -= timedelta(days=primer_dia_anio.weekday() + 1)
+        diferencia_dias = fecha - primer_dia_anio
+        numero_semana = (diferencia_dias.days // 7) + 1
+        return numero_semana
 
 class AmazonDuracionPlanificada(models.Model):
     _name = 'e_box.amazon_duracion_planificada'
