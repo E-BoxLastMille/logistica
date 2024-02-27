@@ -47,6 +47,7 @@
                 <field name="paquetes_devuelto"/>                
                 <field name="contratante_empleado_amazon_id" optional="hide"/>
                 <field name="asalariado_de_id" optional="hide"/>
+                <field name="excluida" optional="hide"/>
             </tree>
         </field>
     </record>
@@ -58,27 +59,28 @@
             <form create="false" edit="false">
                 <sheet>
                     <group>
-                <field name="fecha"/>
-                <field name="numero_semana_amazon"/>
-                <field name="amazon_delivery_id"/>
-                <field name="empleado_id"/>
-                <field name="departamento_id"/>
-                <field name="puesto_id"/>
-                <field name="amazon_identificacion"/>
-                <field name="amazon_nombre_mensajero"/>
-                <field name="amazon_ruta_id"/>
-                <field name="amazon_tipo_servicio_id"/>
-                <field name="amazon_duracion_planificada_id"/>
-                <field name="inicio_sesion"/>
-                <field name="cierre_sesion"/>
-                <field name="distancia_total_planificada"/>
-                <field name="distancia_total_permitida"/>
-                <field name="amazon_unidad_distancia_id"/>
-                <field name="paquetes_total"/>
-                <field name="paquetes_entregado"/>
-                <field name="paquetes_devuelto"/>                
-                <field name="contratante_empleado_amazon_id"/>
-                <field name="asalariado_de_id"/>
+                        <field name="fecha"/>
+                        <field name="numero_semana_amazon"/>
+                        <field name="amazon_delivery_id"/>
+                        <field name="empleado_id"/>
+                        <field name="departamento_id"/>
+                        <field name="puesto_id"/>
+                        <field name="amazon_identificacion"/>
+                        <field name="amazon_nombre_mensajero"/>
+                        <field name="amazon_ruta_id"/>
+                        <field name="amazon_tipo_servicio_id"/>
+                        <field name="amazon_duracion_planificada_id"/>
+                        <field name="inicio_sesion"/>
+                        <field name="cierre_sesion"/>
+                        <field name="distancia_total_planificada"/>
+                        <field name="distancia_total_permitida"/>
+                        <field name="amazon_unidad_distancia_id"/>
+                        <field name="paquetes_total"/>
+                        <field name="paquetes_entregado"/>
+                        <field name="paquetes_devuelto"/>
+                        <field name="contratante_empleado_amazon_id"/>
+                        <field name="asalariado_de_id"/>
+                        <field name="excluida"/>
                     </group>
                 </sheet>
             </form>

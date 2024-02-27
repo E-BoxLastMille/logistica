@@ -28,6 +28,7 @@ class ServiceDetailsReport(models.Model):
     amazon_nombre_mensajero = fields.Char(string = "Nombre mensajero", related='empleado_id.amazon_nombre_mensajero', store=True)
     old_id = fields.Integer(string='Old id.')
     numero_semana_amazon = fields.Integer(string='Número de Semana Amazon', compute='_compute_numero_semana_amazon', store=True)
+    excluida = fields.Boolean('Excluida', default=False)
 
     @api.depends('fecha')
     def _compute_numero_semana_amazon(self):
@@ -59,6 +60,7 @@ class ServiceDetailsReport(models.Model):
         si el 1 de enero es un domingo, ese día comienza la primera semana. Cualquier fecha anterior
         al primer domingo se considera parte de la semana 1.
         """
+        fecha = datetime(fecha.year, fecha.month, fecha.day)
         primer_dia_anio = datetime(fecha.year, 1, 1)
         if primer_dia_anio.weekday() != 6:  # 6 es domingo
             primer_dia_anio -= timedelta(days=primer_dia_anio.weekday() + 1)

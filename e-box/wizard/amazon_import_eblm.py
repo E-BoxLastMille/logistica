@@ -83,6 +83,10 @@ class AmazonImportEBLM(models.Model):
                 ('amazon_ruta_id', '=', amazon_ruta_id.id),
                 ('amazon_tipo_servicio_id', '=', amazon_tipo_servicio_id.id)
             ])
+
+            excluido_raw = row['¿Excluida?']
+            excluida = False if excluido_raw == 'no' else True
+
             if not service_details_report_id:
                 self.env['e_box.service_details_report'].create({
                     'fecha': row['Fecha'],
@@ -98,7 +102,8 @@ class AmazonImportEBLM(models.Model):
                     'amazon_unidad_distancia_id': amazon_unidad_distancia_id.id,
                     'paquetes_total': int(row['Envíos entregados']) + int(row['Envíos devueltos']),
                     'paquetes_entregado': row['Envíos entregados'],
-                    'paquetes_devuelto': row['Envíos devueltos'],    
+                    'paquetes_devuelto': row['Envíos devueltos'],
+                    'excluida': excluida
                 })
         if missing_mensajeros:
             raise UserError('Los registros de los siguientes mensajeros no han podido ser importados porque no existen en Odoo:\n\n%s' % '\n'.join(missing_mensajeros))
