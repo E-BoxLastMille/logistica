@@ -33,6 +33,9 @@
             </xpath>
             <xpath expr="//field[@name='employee_id']" position="after">
                 <field name="vehiculo_id" />
+                <field name="x_studio_ent_odometro" />
+                <field name="x_studio_sal_odometro" />
+                <field name="x_kmdia" />
                 <field name="tipo_ruta_id" />
                 <field name="contratante_empleado_id" />
                 <field name="asalariado_de_empleado_id"/>
