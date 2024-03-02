@@ -43,6 +43,18 @@
             </xpath>
         </field>
     </record>
+
+    <record id="view_employee_form_hr_attendance_ebox" model="ir.ui.view">
+        <field name="name">hr.employee.ebox</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr_attendance.view_employee_form_inherit_hr_attendance"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_open_last_month_attendances']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+        </field>
+    </record>
+
     <!-- Acción de ventana para abrir la vista de lista de tipos de rutas -->
     <record id="action_tipo_ruta" model="ir.actions.act_window">
         <field name="name">Tipos de Ruta</field>
