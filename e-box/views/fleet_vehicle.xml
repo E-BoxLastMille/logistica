@@ -28,6 +28,14 @@
             <xpath expr="//field[@name='manager_id']" position="after">
                 <field name="propietario_id" />
             </xpath>
+
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" name="action_open_attendances"
+                    type="object" icon="fa-clock-o" invisible="total_attendance == 0">
+                    <field string="Asistencias" name="total_attendance" widget="statinfo"/>
+                </button>
+            </xpath>
+
         </field>
     </record>
     <record id="view_vehicle_tree_inherit" model="ir.ui.view">
