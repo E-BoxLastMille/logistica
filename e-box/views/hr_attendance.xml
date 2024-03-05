@@ -3,7 +3,7 @@
 
     <!-- Extender la acción existente -->
     <record id="hr_attendance.hr_attendance_action" model="ir.actions.act_window">
-        <field name="view_mode">tree,form,gantt</field>
+        <field name="view_mode">tree,form,pivot,gantt</field>
     </record>
 
     <record id="hr_attendance_view_filter_ebox" model="ir.ui.view">
@@ -23,6 +23,7 @@
             </xpath>
         </field>
     </record>
+    
     <record id="view_attendance_tree_ebox" model="ir.ui.view">
         <field name="name">hr.attendance.tree.ebox</field>
         <field name="model">hr.attendance</field>
@@ -44,6 +45,18 @@
         </field>
     </record>
 
+    <record id="view_attendance_pivot_ebox" model="ir.ui.view">
+        <field name="name">hr.attendance.pivot.ebox</field>
+        <field name="model">hr.attendance</field>
+        <field name="arch" type="xml">
+            <pivot string="Asistencias">
+                <field name="check_in" type="col"/>
+                <field name="employee_id" type="row"/>
+                <field name="worked_hours" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+    
     <record id="view_employee_form_hr_attendance_ebox" model="ir.ui.view">
         <field name="name">hr.employee.ebox</field>
         <field name="model">hr.employee</field>
