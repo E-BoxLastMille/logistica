@@ -14,7 +14,11 @@ class HrEmployee(models.Model):
             "type": "ir.actions.act_window",
             "name": _("Asistencias totales"),
             "res_model": "hr.attendance",
-            "views": [[self.env.ref('hr_attendance.view_attendance_tree').id, "tree"]],
+            "views": [
+                [self.env.ref('hr_attendance.view_attendance_tree').id, "tree"],
+                [self.env.ref('e-box.view_attendance_pivot_ebox').id, "pivot"],
+                [self.env.ref('e-box.view_attendance_calendar_ebox').id, "calendar"],
+            ],
             "context": {
                 "create": 0
             },
