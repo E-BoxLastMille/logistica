@@ -40,6 +40,8 @@ class AmazonImportEBLM(models.Model):
                     ('name','ilike', row['Mensajero']),
                     ('amazon_nombre_mensajero','ilike', row['Mensajero'])
                 ], limit=1, order='id desc')
+                if not empleado_id:
+                    missing_mensajeros.add(row['Mensajero'])
             else:
                 empleado_id = False
             
@@ -123,6 +125,8 @@ class AmazonImportEBLM(models.Model):
                     'paquetes_devuelto': envios_devueltos,
                     'excluida': excluida
                 })
-        #if missing_mensajeros:
-        #    raise UserError('Los registros de los siguientes mensajeros no han podido ser importados porque no existen en Odoo:\n\n%s' % '\n'.join(missing_mensajeros))
+
+        if missing_mensajeros:
+            raise UserError('Los registros de los siguientes mensajeros no han podido ser importados porque no existen en Odoo:\n\n%s' % '\n'.join(missing_mensajeros))
+
         return {'type': 'ir.actions.client', 'tag': 'reload'}
