@@ -41,6 +41,7 @@
                 <field name="contratante_empleado_id" />
                 <field name="asalariado_de_empleado_id"/>
                 <field name="numero_semana_amazon" />
+                <field name="employee_amazon_id" optional="show"/>
             </xpath>
         </field>
     </record>
