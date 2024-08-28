@@ -12,6 +12,7 @@ class HrAttendance(models.Model):
     numero_semana_amazon = fields.Integer(string='Número de Semana Amazon', compute='_compute_numero_semana_amazon', store=True)
     vehiculo_id = fields.Many2one('fleet.vehicle', string = "Vehículo")
     tipo_ruta_id = fields.Many2one('e_box.tipo_ruta', string='Tipo Ruta')
+    employee_amazon_id = fields.Char(related="employee_id.amazon_identificacion", store=True)
 
     @api.depends('check_in')
     def _compute_numero_semana_amazon(self):
