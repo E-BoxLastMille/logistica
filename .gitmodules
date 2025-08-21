@@ -1,0 +1,4 @@
+[submodule "voodoo-labs"]
+	path = voodoo-labs
+	url = git@github.com:voodoo-es/voodoo-labs.git
+	branch = 17.0
