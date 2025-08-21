@@ -9,9 +9,9 @@ class ResCompany(models.Model):
 
     def _domain_company(self):
         company = self.env.company
-        return ['|', ('company_id', '=', False), ('company_id', '=', company.id)]
+        return ['|', ('company_id', '=', False), ('company_id', '=', company.id), ('type', '=', 'folder')]
 
     documents_fleet_settings = fields.Boolean()
-    documents_fleet_folder = fields.Many2one('documents.folder', string="Fleet Workspace", domain=_domain_company,
+    documents_fleet_folder = fields.Many2one('documents.document', string="Fleet Workspace", domain=_domain_company,
                                           default=lambda self: self.env.ref('documents_fleet.documents_fleet_folder',
                                                                             raise_if_not_found=False))

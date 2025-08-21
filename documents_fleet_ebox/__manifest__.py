@@ -10,7 +10,7 @@
     'depends': ['documents', 'documents_fleet'],
     'data': [
         'views/fleet_vehicle.xml',
-        'views/res_config_settings.xml',
+        # 'views/res_config_settings.xml', #TODO: No parece ser necesario migrarse
     ],
     'installable': True,
     'auto_install': False,

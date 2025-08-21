@@ -3,7 +3,7 @@
 
     <!-- Extender la acción existente -->
     <record id="hr_attendance.hr_attendance_action" model="ir.actions.act_window">
-        <field name="view_mode">tree,form,calendar,pivot,gantt</field>
+        <field name="view_mode">list,form,calendar,pivot,gantt</field>
     </record>
 
     <record id="hr_attendance_view_filter_ebox" model="ir.ui.view">
@@ -25,18 +25,19 @@
     </record>
     
     <record id="view_attendance_tree_ebox" model="ir.ui.view">
-        <field name="name">hr.attendance.tree.ebox</field>
+        <field name="name">hr.attendance.list.ebox</field>
         <field name="model">hr.attendance</field>
         <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
         <field name="arch" type="xml">
-            <xpath expr="//tree" position="attributes">
+            <xpath expr="//list" position="attributes">
                 <attribute name="editable">bottom</attribute>
             </xpath>
             <xpath expr="//field[@name='employee_id']" position="after">
                 <field name="vehiculo_id" />
-                <field name="x_studio_ent_odometro" />
-                <field name="x_studio_sal_odometro" />
-                <field name="x_kmdia" />
+                <!-- TODO: Organizar para V18 - Despues de tener data -->
+<!--                <field name="x_studio_ent_odometro" />-->
+<!--                <field name="x_studio_sal_odometro" />-->
+<!--                <field name="x_kmdia" />-->
                 <field name="tipo_ruta_id" />
                 <field name="contratante_empleado_id" />
                 <field name="asalariado_de_empleado_id"/>
@@ -83,7 +84,7 @@
     <record id="action_tipo_ruta" model="ir.actions.act_window">
         <field name="name">Tipos de Ruta</field>
         <field name="res_model">e_box.tipo_ruta</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Añade aquí tus nuevos tipos de rutas.
